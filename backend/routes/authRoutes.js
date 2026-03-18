@@ -1,11 +1,6 @@
 // routes/authRoutes.js
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController');
-
-router.post('/login', authController.login);
-const express = require('express');
-
 const db = require('../config/db');
 
 // Registro de usuario
@@ -25,7 +20,7 @@ router.post('/login', (req, res) => {
     db.query(sql, [correo, password], (err, result) => {
         if (err) return res.status(500).json({ error: err.message });
         if (result.length > 0) {
-            res.json(result[0]); // Devuelve {id, nombre, rol}
+            res.json(result[0]);
         } else {
             res.status(401).json({ message: 'Credenciales inválidas' });
         }

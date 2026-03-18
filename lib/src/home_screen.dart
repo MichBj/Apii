@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
           
           _menuItem(context, Icons.shopping_cart, "Nueva Venta", '/pos'),
           _menuItem(context, Icons.inventory, "Inventario", '/inventory'),
+          _menuItem(context, Icons.location_on, "Geolocalización", '/geolocation'),
         ],
       ),
     );

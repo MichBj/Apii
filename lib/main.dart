@@ -9,8 +9,10 @@ import 'src/sales/providers/carrito_provider.dart';
 import 'src/auth/screens/welcome_screen.dart';
 import 'src/home_screen.dart';
 import 'src/inventory/screens/add_product_screen.dart';
+import 'src/inventory/screens/inventory_screen.dart';
+import 'src/shared/screens/geolocation_screen.dart';
 import 'src/sales/screens/scanner_screen.dart';
-import 'src/sales/screens/venta_pos.dart'; // Importante: Asegúrate que esta ruta exista
+import 'src/sales/screens/venta_pos.dart';
 
 void main() {
   runApp(
@@ -39,7 +41,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomeScreen(),
         '/scanner': (context) => const ScannerScreen(),
         '/add_product': (context) => const AddProductScreen(),
-        '/pos': (context) => const VentaPOS(), // Aquí registramos la ruta que faltaba
+        '/pos': (context) => const VentaPOS(),
+        '/inventory': (context) => const InventoryScreen(),
+        '/geolocation': (context) => const GeolocationScreen(),
       },
     );
   }

@@ -35,8 +35,9 @@ class _VentaPOSState extends State<VentaPOS> {
     
     setState(() => _buscando = true);
     
-    // Al declarar la variable como "Producto?", el import ya no sale como "unused"
-    final Producto? producto = await ApiService.buscarPorCodigo(code);
+    // Buscar producto por código usando buscarProducto
+    final resultados = await ApiService.buscarProducto(code);
+    final Producto? producto = resultados.isNotEmpty ? resultados.first : null;
     
     if (!mounted) return; // Seguridad para evitar errores si cierras la pantalla
     setState(() => _buscando = false);

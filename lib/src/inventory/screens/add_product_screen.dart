@@ -40,8 +40,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
     bool ok = await ApiService.crearProducto(
       nombre: _nombreController.text,
-      precio: double.parse(_precioController.text),
+      precio: double.parse(_precioController.text.replaceAll('\$', '').replaceAll(',', '').trim()),
       codigo: _codigoController.text,
+      cantidad: 1, // Puedes cambiarlo por un campo si tienes input de cantidad
       imagen: _imageFile,
     );
 
@@ -50,7 +51,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
     if (ok) {
       messenger.showSnackBar(const SnackBar(content: Text('Producto guardado correctamente')));
-      Navigator.pop(context);
+      Navigator.pop(context, true);
     } else {
       messenger.showSnackBar(const SnackBar(content: Text('Error al guardar producto')));
     }
@@ -60,6 +61,28 @@ class _AddProductScreenState extends State<AddProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Nuevo Producto')),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            TextButton.icon(
+              onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false),
+              icon: const Icon(Icons.home),
+              label: const Text('Inicio'),
+            ),
+            TextButton.icon(
+              onPressed: () => Navigator.pushReplacementNamed(context, '/inventory'),
+              icon: const Icon(Icons.inventory),
+              label: const Text('Inventario'),
+            ),
+            TextButton.icon(
+              onPressed: () => Navigator.pushReplacementNamed(context, '/pos'),
+              icon: const Icon(Icons.shopping_cart),
+              label: const Text('Ventas'),
+            ),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Form(

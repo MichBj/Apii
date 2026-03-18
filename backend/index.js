@@ -9,9 +9,11 @@ app.use(express.json());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root', 
-    password: '', 
+    password: '1230', 
     database: 'sgvi_db'
 });
+const productRoutes = require('./routes/productRoutes');
+app.use('/api', productRoutes);
 
 // LOGIN: Valida credenciales y devuelve el ROL
 app.post('/login', (req, res) => {
