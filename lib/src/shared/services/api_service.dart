@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../inventory/models/producto_model.dart';
 
 class ApiService {
-  static const String baseUrl = "http://192.168.137.1:5000/api";
+  static const String baseUrl = "http://localhost:5000/api";
 
   // Crear producto (con imagen, para admin o invitado)
   static Future<bool> crearProducto({
